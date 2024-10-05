@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess Your Astrological Sign</title>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            text-align: center;
+            padding: 0;
+            margin: 0;
+        }
+        h1 {
+            margin-top: 50px;
+            font-size: 2.5em;
+            color: #e74c3c;
+        }
+        .container {
+            margin-top: 50px;
+            padding: 20px;
+            background-color: #34495e;
+            border-radius: 10px;
+            display: inline-block;
+            width: 70%;
+            max-width: 600px;
+        }
+        select, button {
+            padding: 12px;
+            font-size: 1.1em;
+            margin: 15px;
+            border-radius: 5px;
+            border: none;
+        }
+        button {
+            background-color: #e74c3c;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #c0392b;
+        }
+        .info {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #ecf0f1;
+            color: #2c3e50;
+            border-radius: 10px;
+            display: none;
+            text-align: left;
+            font-size: 1.2em;
+            line-height: 1.6;
+        }
+        p {
+            margin: 0;
+        }
+        .footer {
+            margin-top: 40px;
+            font-size: 0.9em;
+            color: #bdc3c7;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Guess Your Astrological Sign</h1>
+    <div class="container">
+        <p>Answer the following questions, and we will try to guess your astrological sign!</p>
+        
+        <p>1. What best describes your approach to challenges?</p>
+        <select id="question1">
+            <option value="" disabled selected>Select one</option>
+            <option value="bold">I face them head-on with confidence.</option>
+            <option value="calm">I stay calm and approach them logically.</option>
+            <option value="avoid">I try to avoid unnecessary conflict.</option>
+            <option value="emotional">I can be emotional, but I find a way to handle them.</option>
+        </select>
+
+        <p>2. Which of these qualities do you value most in others?</p>
+        <select id="question2">
+            <option value="" disabled selected>Select one</option>
+            <option value="independence">Independence</option>
+            <option value="loyalty">Loyalty</option>
+            <option value="intellect">Intellect</option>
+            <option value="compassion">Compassion</option>
+        </select>
+
+        <p>3. How do you spend your free time?</p>
+        <select id="question3">
+            <option value="" disabled selected>Select one</option>
+            <option value="adventure">Going on adventures or trying new things.</option>
+            <option value="relax">Relaxing at home with a good book or show.</option>
+            <option value="social">Hanging out with friends or family.</option>
+            <option value="creative">Working on a creative or artistic project.</option>
+        </select>
+
+        <br>
+        <button onclick="guessSign()">Guess My Sign</button>
+
+        <div id="info" class="info">
+            <p id="signInfo"></p>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2024 Astrological Insights</p>
+    </div>
+
+    <script>
+        function guessSign() {
+            // Get the values from the dropdowns
+            let question1 = document.getElementById("question1").value;
+            let question2 = document.getElementById("question2").value;
+            let question3 = document.getElementById("question3").value;
+            
+            let signInfo = document.getElementById("signInfo");
+            let infoDiv = document.getElementById("info");
+
+            if (question1 === "" || question2 === "" || question3 === "") {
+                alert("Please answer all the questions.");
+                return;
+            }
+
+            // Simple "guessing" logic based on traits associated with signs
+            let guessedSign = "";
+
+            if (question1 === "bold" && question2 === "independence" && question3 === "adventure") {
+                guessedSign = "Aries";
+            } else if (question1 === "calm" && question2 === "loyalty" && question3 === "relax") {
+                guessedSign = "Taurus";
+            } else if (question1 === "avoid" && question2 === "intellect" && question3 === "social") {
+                guessedSign = "Gemini";
+            } else if (question1 === "emotional" && question2 === "compassion" && question3 === "creative") {
+                guessedSign = "Pisces";
+            } else if (question1 === "calm" && question2 === "loyalty" && question3 === "social") {
+                guessedSign = "Cancer";
+            } else if (question1 === "bold" && question2 === "independence" && question3 === "creative") {
+                guessedSign = "Leo";
+            } else {
+                guessedSign = "It's hard to pinpoint! You might have qualities of multiple signs.";
+            }
+
+            // Display the guessed sign
+            signInfo.innerHTML = `Based on your answers, we guess you might be a <strong>${guessedSign}</strong>!`;
+            infoDiv.style.display = "block";
+        }
+    </script>
+
+</body>
+</html>
